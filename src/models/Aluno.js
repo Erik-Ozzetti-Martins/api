@@ -39,7 +39,7 @@ export default class Aluno extends Model {
         type: Sequelize.INTEGER,
         defaultValue: '',
         validate: {
-          isIn: {
+          isInt: {
             msg: 'Idade precisa ser um numero inteiro',
           },
         },
@@ -64,5 +64,9 @@ export default class Aluno extends Model {
       },
     }, { sequelize });
     return this;
+  }
+
+  static associate(models) {
+    this.hasMany(models.Foto, { foreignKey: 'aluno_id' });
   }
 }
